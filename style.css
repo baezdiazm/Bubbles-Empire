@@ -1,3 +1,57 @@
 body {
-    background-color: blue;
+    background-color: rgb(225, 226, 228);
+    text-align: center;
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+}
+
+#header {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    margin-left: 5cm;
+    margin-right: 5cm;
+}
+
+#thumbnails {
+    overflow: hidden;
+    height: 150px;
+    width: fit-content;
+    background-color: white;
+    display: inline;
+}
+
+.items div {
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 25px;
+    text-align: center;
+    float: left;
+    height:350px;
+    width: 200px;
+    margin: 5px;
+    padding: 5px;;
+    border: 10px;
+    background-color: rgba(154, 156, 165, 0.336);
+}
+
+img {
+    max-height: 53%;
+    max-width: 100%;
+}
+
+#amiibo_form {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.amiibo-word {
+   font-family:cursive;
+   font-style: italic;
+   color: blueviolet;
+}
+
+#abc {
+    cursor:pointer;
+    color: gray;
+    font-size: 20pt;
 }

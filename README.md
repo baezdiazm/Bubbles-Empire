@@ -1,3 +1,13 @@
-# This is just a practice repo
+have a startup:
+    DOMContentLoaded   
+        execute functions that gets data
 
-Here we'll just be testing out a bunch of code :)
+
+
+Description of the app
+
+Amiibo Central
+    This app allows the you to list your favorite amiibos. The user can lookup amiibos by name or series
+URL of the repo
+How to run it
+Star your best projects

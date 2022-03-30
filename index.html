@@ -2,10 +2,40 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="style.css" />
-    <title>My Website</title>
+    <title>Amiibo Central</title>
+    <script src="index.js" defer></script>
   </head>
+
   <body>
-    <h1>Hello World!</h1>
-    <script src="script.js"></script>
+    <div id="header">
+      <h1>Welcome to your <span class="amiibo-word">Amiibo</span> Central</h1>
+      <h4>Your one-stop for all your <span class='amiibo-word'>Amiibo</span> data</h4>
+    </div>
+    <br>
+    <button id="amiibos">Show Amiibos</button>
+    -
+    <button id="new_amiibo"> Add new Amiibo</button>
+    <br>
+    <hr>
+    <form id="amiibo_form" hidden>
+      <h3>New Amiibo</h3>
+      <br>
+      <label>Name: </label>
+      <input type="text" id="new-name"placeholder="Character's name"/>
+      -
+      <label>Series:</label>
+      <input type="text" id="new-series" placeholder="Amiibo's series"/>
+      -
+      <label>Image URL:</label>
+      <input type="text" id="new-img" placeholder="Enter image URL"/>
+      -
+      <input type="submit" id="submit" name="Submit" value="Submit">
+    </form>
+    <br>
+    <span id="abc"></span>
+    <div id="thumbnails">
+      <div class="items">
+      </div>
+    </div>
   </body>
 </html>
