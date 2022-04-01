@@ -1,18 +1,21 @@
+let allData = []
 document.addEventListener("DOMContentLoaded", () => {
     getData()
     toggleHide()
     newAmiiboForm()
     glosary()
 })
+
 function getData() {
     fetch("https://www.amiiboapi.com/api/amiibo")
     .then(data => data.json())
     .then(res => {
+        allData = res.amiibo
         //For now we will only render the first 3 elements
-        renderData(res.amiibo[73])
+        renderData(allData[73])
         renderData(res.amiibo[74])
         renderData(res.amiibo[75])
-        //This will iterate through the first 10 elements of the array obtained and call renderData on them
+
         //for(let i = 0; i < res.amiibo.length; i++) {
         //    renderData(res.amiibo[i])
         //}
@@ -20,10 +23,10 @@ function getData() {
 }
 
 function renderData(data) {
-    //This selects the Div where the objects will be displayed and appends them to it
+    //This selects the Div where the objects will be displayed to later append them to it
     const div = document.querySelector('.items')
     const btn = document.createElement('button')
-    //Creates a button under every rendered item || for now it only changes the page's background color to White
+    //Creates a button under every rendered item to remove each item individually
     btn.class = "button"
     btn.innerText = 'Remove Amiibo'
     btn.addEventListener('click', (e) => {
@@ -31,12 +34,12 @@ function renderData(data) {
     })
     const post = document.createElement('div')
     post.innerHTML = `
-        <h2>${data.name}</>
-        <h5>Series: ${data.amiiboSeries}</h4>
-        <img src='${data.image}'/>
-        <br>
+    <h2>${data.name}</>
+    <h5>Series: ${data.amiiboSeries}</h4>
+    <img src='${data.image}'/>
+    <br>
     `
-    post.class="item"
+    post.className = `${data.name.split('')[0]}`
     post.appendChild(btn)
     div.appendChild(post)
 }
@@ -45,12 +48,16 @@ function toggleHide() {
     //The page defaults to all items hiding, this toggles them "on/off"
     const am = document.querySelector('#amiibos')
     const thumb = document.querySelector('.items')
+    const nav = document.querySelector('#abc')
     thumb.hidden = true
+    nav.hidden = true
     am.addEventListener('click', () => {
         if (thumb.hidden) {
+            nav.hidden = false
             thumb.hidden = false
             am.innerText='Hide Amiibos'
         } else {
+            nav.hidden = true
             thumb.hidden = true
             am.innerText = 'Show Amiibos'
         }
@@ -59,6 +66,7 @@ function toggleHide() {
 }
 
 function newAmiiboForm() {
+    //Creates the form to add a new Amiibo and defaults it to hidden
     const newBtn = document.querySelector('#new_amiibo')
     let form = document.querySelector('#amiibo_form')
     newBtn.addEventListener('click', () => {
@@ -94,15 +102,36 @@ function submitAmiibo() {
 }
 
 function glosary() {
-    const abc = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").toUpperCase().split('')
+    const abc = ("8,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z, all").toUpperCase().split(',')
     const list = document.querySelector('#abc')
     for (let i=0; i<abc.length; i++) {
-        console.log(abc[i])
         const letter = document.createElement("span")
         letter.innerHTML = ` ${abc[i]} `
+        letter.id = abc[i]
         list.appendChild(letter)
-        letter.addEventListener('click', () => {
-            alert(`${abc[i]} was clicked!`)
+
+        letter.addEventListener('click', (e) => {
+            console.log(`${e.target.innerText} Was clicked!`)
+            
+            //HIDES all the amiibos (Except for étoile because 'e' and 'é' are not the same characters)
+            const ab = document.getElementById('abc').childNodes
+            for (const i of abc) {
+                const e = document.getElementsByClassName(`${i}`)
+                for(const element of e) {
+                    element.hidden = true
+                }
+            }
+
+            //SHOWS/HIDES the clicked letter
+            const letter = document.getElementsByClassName(`${e.target.innerText}`)
+            for(const item of letter) {
+                if(item.hidden === true) {
+                    item.hidden = false
+                }
+                else {
+                    item.hidden = true
+                }
+            }
         })
     }
 }
