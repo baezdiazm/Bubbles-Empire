@@ -25,13 +25,29 @@ function getData() {
 function renderData(data) {
     //This selects the Div where the objects will be displayed to later append them to it
     const div = document.querySelector('.items')
-    const btn = document.createElement('button')
+    
+    //Details view -- Shows big picture
+    const photo = document.createElement('button')
+    photo.innerText = "See Amiibo"
+    photo.addEventListener('click', () => {
+        let overlay = document.querySelector('#overlay')
+        overlay.style.display = "block"
+        let img = document.createElement('img')
+        let big = document.querySelector('#big')
+        big.innerHTML = `
+        `
+        img.src = `${data.image}`
+        big.appendChild(img)
+    
+    })
     //Creates a button under every rendered item to remove each item individually
-    btn.class = "button"
-    btn.innerText = 'Remove Amiibo'
+    const btn = document.createElement('button')
+    btn.className = "button"
+    btn.innerText = 'Remove'
     btn.addEventListener('click', (e) => {
         e.target.parentNode.remove()
     })
+
     const post = document.createElement('div')
     post.innerHTML = `
     <h2>${data.name}</>
@@ -40,6 +56,7 @@ function renderData(data) {
     <br>
     `
     post.className = `${data.name.split('')[0]}`
+    post.appendChild(photo)
     post.appendChild(btn)
     div.appendChild(post)
 }
@@ -143,7 +160,7 @@ function glossary(collection) {
     }
 }
 
-document.querySelector('#show-overlay').addEventListener('click', () => {
+document.querySelector('#close').addEventListener('click', () => {
     const overlay = document.querySelector('#overlay')
-    overlay.style.display = 'block'
+    overlay.style.display = 'none'
 })

@@ -69,3 +69,10 @@ img {
     z-index: 2;
     cursor: hover;
 }
+
+#big img {
+    max-width: 1024px;
+    max-height: 600px;
+    margin: auto;
+    margin-top: 200px;
+}
