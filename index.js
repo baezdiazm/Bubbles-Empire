@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     getData()
     toggleHide()
     newAmiiboForm()
-    glosary()
+    //glosary()
 })
 
 function getData() {
@@ -12,13 +12,13 @@ function getData() {
     .then(res => {
         allData = res.amiibo
         //For now we will only render the first 3 elements
-        renderData(allData[73])
-        renderData(res.amiibo[74])
-        renderData(res.amiibo[75])
-
-        //for(let i = 0; i < res.amiibo.length; i++) {
-        //    renderData(res.amiibo[i])
-        //}
+        //renderData(allData[73])
+        //renderData(res.amiibo[74])
+        //renderData(res.amiibo[75])
+        glossary(res.amiibo)
+        for(let i = 0; i < res.amiibo.length; i++) {
+            renderData(res.amiibo[i])
+        }
     })
 }
 
@@ -101,21 +101,28 @@ function submitAmiibo() {
     })
 }
 
-function glosary() {
-    const abc = ("8,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z, all").toUpperCase().split(',')
+function glossary(collection) {
+    //Creates the array of the first character of their names
+    const abc2 = []
+    for(const item of collection) {
+        const letter = item.name.split('')[0]
+        if (!(abc2.includes(letter))) {
+            abc2.push(item.name.split('')[0])
+        }
+    }
+    //Creates the "ABC" navigation bar and adds its functionality
+    const alphabet = abc2.sort()
     const list = document.querySelector('#abc')
-    for (let i=0; i<abc.length; i++) {
+    for (let i=0; i<alphabet.length; i++) {
         const letter = document.createElement("span")
-        letter.innerHTML = ` ${abc[i]} `
-        letter.id = abc[i]
+        letter.innerHTML = ` ${alphabet[i]} `
+        letter.id = alphabet[i]
         list.appendChild(letter)
 
-        letter.addEventListener('click', (e) => {
-            console.log(`${e.target.innerText} Was clicked!`)
-            
-            //HIDES all the amiibos (Except for étoile because 'e' and 'é' are not the same characters)
+        //Adds evendListener to each letter that hides all the amiibos except the ones of the letter clicked
+        letter.addEventListener('click', (e) => {            
             const ab = document.getElementById('abc').childNodes
-            for (const i of abc) {
+            for (const i of alphabet) {
                 const e = document.getElementsByClassName(`${i}`)
                 for(const element of e) {
                     element.hidden = true
@@ -135,3 +142,8 @@ function glosary() {
         })
     }
 }
+
+document.querySelector('#show-overlay').addEventListener('click', () => {
+    const overlay = document.querySelector('#overlay')
+    overlay.style.display = 'block'
+})
