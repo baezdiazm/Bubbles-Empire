@@ -113,6 +113,8 @@ function submitAmiibo() {
             alert("1 or more fields empty, please fill out every field before submitting!")
         } else {
             renderData(data)
+            document.querySelector('form').hidden = true
+            document.querySelector('#new_amiibo').innerText = 'Add new Amiibo'
             document.querySelector('form').reset()
         }
     })

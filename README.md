@@ -1,14 +1,26 @@
-have a startup:
-    DOMContentLoaded   
-        execute functions that gets data
+# Amiibo Central
 
+Amiibo Central is a site dedicated to listing all the Amiibos created by Nintendo able to be filtered by name
 
+## Usage
 
-Description of the app
+To visit and use this page simply fork and clone the GitHub address you currently are in on your favorite terminal (https://github.com/baezdiazm/Bubbles-Empire),
+cd into the cloned directory, and on your terminal type:
 
-Amiibo Central
-    This app allows the you to list your favorite amiibos. The user can lookup amiibos by name or series
-URL of the repo
-    This page can be found at https://www.github.com/baezdiazm/bubbles-empire
-How to run it
-Star your best projects
+```bash
+explorer.exe index.html
+```
+
+From there a window in your default web browser will open and load up the site.
+
+## Contributing
+
+This site is solely for school projects purposes, no collaboration is accepted at the moment.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+### Credits
+
+The API used on this project can be found at [AmiiboAPI.com](https://amiiboapi.com/api/amiibo/)
