@@ -4,7 +4,7 @@ Amiibo Central is a site dedicated to listing all the Amiibos created by Nintend
 
 ## Usage
 
-To visit and use this page simply fork and clone the GitHub address you currently are in on your favorite terminal (https://github.com/baezdiazm/Bubbles-Empire),
+To visit and use this page simply fork and clone the GitHub address you currently are in on your favorite terminal [https://github.com/baezdiazm/Bubbles-Empire],
 cd into the cloned directory, and on your terminal type:
 
 ```bash

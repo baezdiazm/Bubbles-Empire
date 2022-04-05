@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     getData()
     toggleHide()
     newAmiiboForm()
-    //glosary()
 })
 
 function getData() {
@@ -46,6 +45,12 @@ function renderData(data) {
     btn.innerText = 'Remove'
     btn.addEventListener('click', (e) => {
         e.target.parentNode.remove()
+    })
+
+    //Creates a button to CLOSE the big picture view
+    document.querySelector('#close').addEventListener('click', () => {
+        const overlay = document.querySelector('#overlay')
+        overlay.style.display = 'none'
     })
 
     const post = document.createElement('div')
@@ -122,15 +127,14 @@ function submitAmiibo() {
 
 function glossary(collection) {
     //Creates the array of the first character of their names
-    const abc2 = []
-    for(const item of collection) {
-        const letter = item.name.split('')[0]
-        if (!(abc2.includes(letter))) {
-            abc2.push(item.name.split('')[0])
-        }
-    }
+    const abc = []
+    collection.map(item => {
+      if(!(abc.includes(item.name.split('')[0]))) {
+        abc.push(item.name.split('')[0])
+      }
+    })
     //Creates the "ABC" navigation bar and adds its functionality
-    const alphabet = abc2.sort()
+    const alphabet = abc.sort()
     const list = document.querySelector('#abc')
     for (let i=0; i<alphabet.length; i++) {
         const letter = document.createElement("span")
@@ -148,7 +152,7 @@ function glossary(collection) {
                 }
             }
 
-            //SHOWS/HIDES the clicked letter
+            //un-hides only the clicked letter
             const letter = document.getElementsByClassName(`${e.target.innerText}`)
             for(const item of letter) {
                 if(item.hidden === true) {
@@ -161,8 +165,3 @@ function glossary(collection) {
         })
     }
 }
-
-document.querySelector('#close').addEventListener('click', () => {
-    const overlay = document.querySelector('#overlay')
-    overlay.style.display = 'none'
-})
