@@ -128,7 +128,7 @@ function submitAmiibo() {
 function glossary(collection) {
     //Creates the array of the first character of their names
     const abc = []
-    collection.map(item => {
+    const abc  = collection.map(item => {
       if(!(abc.includes(item.name.split('')[0]))) {
         abc.push(item.name.split('')[0])
       }
@@ -136,7 +136,7 @@ function glossary(collection) {
     //Creates the "ABC" navigation bar and adds its functionality
     const alphabet = abc.sort()
     const list = document.querySelector('#abc')
-    for (let i=0; i<alphabet.length; i++) {
+    for (let i=0; i<alphabet.length; i++) { //could use for each
         const letter = document.createElement("span")
         letter.innerHTML = ` ${alphabet[i]} `
         letter.id = alphabet[i]
